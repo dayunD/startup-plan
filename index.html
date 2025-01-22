@@ -362,13 +362,15 @@
         </div>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-        <script>
-        function formatNumber(value) {
-            // 입력된 값이 숫자가 아닐 경우 그대로 반환
-            if (isNaN(value) || value.trim() === '') return '';
-            return parseInt(value, 10).toLocaleString(); // 1,000 단위 쉼표 추가
-        }
 
+        <script>
+            // 숫자 형식 포맷
+            function formatNumber(value) {
+                if (isNaN(value) || value.trim() === '') return '';
+                return parseInt(value, 10).toLocaleString();
+            }
+        
+            // 항목 추가 기능
             function addRow() {
                 const tableBody = document.querySelector('#finance-table tbody');
                 const row = document.createElement('tr');
@@ -379,59 +381,48 @@
                 `;
                 tableBody.appendChild(row);
             }
-
+        
+            // 항목 삭제 기능
             function deleteRow(button) {
                 const row = button.parentNode.parentNode;
                 row.parentNode.removeChild(row);
             }
-
-            function previewData() {
         
+            // 미리보기 및 이미지 저장
+            function previewData() {
                 const company = document.getElementById('company').value.trim();
                 const student = document.getElementById('student').value.trim();
                 const item = document.getElementById('item').value.trim();
                 const reason = document.getElementById('reason').value.trim();
-
-                
-                const marketInputs = document.querySelector('table input'); // 필요하면 수정
-
+        
+                const previewContent = `
+                    <div class="form-container">
+                        <h2>1. 창업 아이템 및 업종</h2>
+                        <p><strong>기업명:</strong> ${company}</p>
+                        <p><strong>학번 및 이름:</strong> ${student}</p>
+                        <p><strong>창업 아이템 및 업종:</strong> ${item}</p>
+                        <p><strong>선택한 이유:</strong> ${reason}</p>
                     </div>
                 `;
-
-                function previewData() {
-                    const company = document.getElementById('company').value.trim();
-                    const student = document.getElementById('student').value.trim();
-                    const item = document.getElementById('item').value.trim();
-                    const reason = document.getElementById('reason').value.trim();
-                
-                    const previewContent = `
-                        <div class="form-container">
-                            <h2>1. 창업 아이템 및 업종</h2>
-                            <p><strong>기업명:</strong> ${company}</p>
-                            <p><strong>학번 및 이름:</strong> ${student}</p>
-                            <p><strong>창업 아이템 및 업종:</strong> ${item}</p>
-                            <p><strong>선택한 이유:</strong> ${reason}</p>
-                        </div>
-                    `;
-                
-                    const previewWindow = window.open('', '_blank');
-                    previewWindow.document.write(`
-                        <!DOCTYPE html>
-                        <html lang="en">
-                        <head>
-                            <meta charset="UTF-8">
-                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                            <title>창업계획서 미리보기</title>
-                            <style>${document.querySelector('style').innerHTML}</style>
-                        </head>
-                        <body>${previewContent}</body>
-                        </html>
-                    `);
-                    previewWindow.document.close();
-                }
-
+        
+                const previewWindow = window.open('', '_blank');
+                previewWindow.document.write(`
+                    <!DOCTYPE html>
+                    <html lang="en">
+                    <head>
+                        <meta charset="UTF-8">
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                        <title>창업계획서 미리보기</title>
+                        <style>${document.querySelector('style').innerHTML}</style>
+                    </head>
+                    <body>${previewContent}</body>
+                    </html>
+                `);
+                previewWindow.document.close();
+        
+                // 이미지 저장 기능 추가
                 previewWindow.saveAsImage = function () {
-                    const previewContainer = previewWindow.document.body; // 미리보기 영역
+                    const previewContainer = previewWindow.document.body;
                     html2canvas(previewContainer, {
                         backgroundColor: '#ffffff',
                         useCORS: true,
@@ -443,9 +434,9 @@
                         link.click();
                     });
                 };
-
             }
         </script>
+
     </div>
 </body>
 </html>
