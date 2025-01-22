@@ -278,15 +278,15 @@
                 </tr>
                 <tr>
                     <td>학번 및 이름</td>
-                    <td><input type="text" id="student" class="long-input" placeholder="예: 300719 송다윤, 260721 송영진"></td>
+                    <td><input type="text" id="student" class="long-input" placeholder="예: 300719 송다윤"></td>
                 </tr>
                 <tr>
                     <td>창업 아이템 및 업종</td>
-                    <td><input type="text" class="long-input" id="item" placeholder="예: 4차산업 교육 콘텐츠"></td>
+                    <td><input type="text" class="long-input" id="item" placeholder="예: 교육 콘텐츠"></td>
                 </tr>
                 <tr>
                     <td>선택 이유</td>
-                    <td><textarea id="reason" rows="3" class="long-input" placeholder="해당 업종을 선택한 이유를 적어주세요."></textarea></td>
+                    <td><textarea id="reason" rows="3" class="long-input" placeholder="업종 선택한 이유"></textarea></td>
                 </tr>
             </table>
         </div>
@@ -307,10 +307,10 @@
                 </tr>
                 <tr>
                     <td>값</td>
-                    <td class="numeric"><input type="number" placeholder="숫자 입력" class="short-input"><span> 개</span></td>
-                    <td class="numeric"><input type="number" placeholder="숫자 입력" class="short-input"><span> %</span></td>
-                    <td class="numeric"><input type="number" placeholder="숫자 입력" class="short-input"><span> 개</span></td>
-                    <td class="numeric"><input type="number" placeholder="숫자 입력" class="short-input"><span> %</span></td>
+                    <td class="numeric"><input type="number" placeholder="숫자" class="short-input"><span> 개</span></td>
+                    <td class="numeric"><input type="number" placeholder="숫자" class="short-input"><span> %</span></td>
+                    <td class="numeric"><input type="number" placeholder="숫자" class="short-input"><span> 개</span></td>
+                    <td class="numeric"><input type="number" placeholder="숫자" class="short-input"><span> %</span></td>
                 </tr>
             </table>
 
@@ -325,10 +325,10 @@
                 </tr>
                 <tr>
                     <td>값</td>
-                    <td class="numeric"><input type="number" placeholder="숫자 입력" class="short-input"><span> 원</span></td>
-                    <td class="numeric"><input type="number" placeholder="숫자 입력" class="short-input"><span> %</span></td>
-                    <td class="numeric"><input type="number" placeholder="숫자 입력" class="short-input"><span> 건</span></td>
-                    <td class="numeric"><input type="number" placeholder="숫자 입력" class="short-input"><span> %</span></td>
+                    <td class="numeric"><input type="number" placeholder="숫자" class="short-input"><span> 원</span></td>
+                    <td class="numeric"><input type="number" placeholder="숫자" class="short-input"><span> %</span></td>
+                    <td class="numeric"><input type="number" placeholder="숫자" class="short-input"><span> 건</span></td>
+                    <td class="numeric"><input type="number" placeholder="숫자" class="short-input"><span> %</span></td>
                 </tr>
             </table>
         </div>
@@ -347,14 +347,14 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><input type="text" placeholder="예: 체험비" class="long-input"></td>
-                        <td class="numeric"><input type="number" placeholder="숫자 입력" class="medium-input"><span> 원</span></td>
+                        <td><input type="text" placeholder="항목 입력" class="long-input"></td>
+                        <td class="numeric"><input type="number" placeholder="숫자" class="medium-input"><span> 원</span></td>
                         <td><button class="delete-btn" onclick="deleteRow(this)">삭제</button></td>
                     </tr>    
                 </tbody>
             </table>
             <button onclick="addRow()">항목 추가</button>
-            <button onclick="previewData()">미리보기</button>
+            <button onclick="previewData()">결과</button>
         </div>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -370,7 +370,7 @@
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td><input type="text" placeholder="항목 입력" class="long-input"></td>
-                    <td class="numeric"><input type="number" placeholder="숫자 입력" class="medium-input"><span> 원</span></td>
+                    <td class="numeric"><input type="number" placeholder="숫자" class="medium-input"><span> 원</span></td>
                     <td><button class="delete-btn" onclick="deleteRow(this)">삭제</button></td>
                 `;
                 tableBody.appendChild(row);
@@ -382,7 +382,7 @@
             }
 
             function previewData() {
-            alert("미리보기 기능 실행"); // 미리보기 로직 추가 가능
+            alert("창업계획서 결과보기"); // 미리보기 로직 추가 가능
         
                 const company = document.getElementById('company').value.trim();
                 const student = document.getElementById('student').value.trim();
