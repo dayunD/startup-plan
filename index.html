@@ -101,6 +101,7 @@
             align-items: center; /* 수직 중앙 정렬 */
             justify-content: flex-start; /* 입력창과 단위 왼쪽 정렬 */
             gap: 5px; /* 입력창과 단위 간격 */
+            white-space: nowrap; /* 텍스트와 입력창이 한 줄로 유지 */
         }
 
         textarea.long-input {
@@ -113,7 +114,7 @@
         }
 
         input.short-input, input.medium-input, input.long-input {
-            flex: 0 0 auto; /* 입력창 크기를 고정 */
+            flex: 1; /* 입력창이 유연하게 공간 차지 */
             width: 60%;
             height: 30px;
             padding: 6px;
@@ -123,7 +124,8 @@
         }
 
         span {
-            white-space: nowrap; /* 단위가 줄바꿈되지 않도록 설정 */
+            flex: 0 0 auto; /* 단위의 크기를 고정 */
+            white-space: nowrap; /* 단위 텍스트가 줄바꿈되지 않도록 설정 */
         }
 
         button {
