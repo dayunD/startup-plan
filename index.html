@@ -90,7 +90,7 @@
             padding: 8px;
             text-align: left;
             font-size: 14px;
-            border: 1px solid #ccc;
+            border: 1px solid #ccc; /* 셀 테두리 */
             text-align: center; /* 테이블 셀 텍스트와 버튼을 가운데 정렬 */
             vertical-align: middle; /* 버튼을 셀 중앙에 맞춤 */
             overflow-wrap: break-word; /* 텍스트 줄바꿈 */
@@ -99,29 +99,38 @@
         td.numeric {
             display: flex; /* Flexbox 사용 */
             align-items: center; /* 수직 중앙 정렬 */
-            justify-content: flex-start; /* 입력창과 단위 왼쪽 정렬 */
+            justify-content: center; /* 입력창과 단위 왼쪽 정렬 */
             gap: 5px; /* 입력창과 단위 간격 */
-            white-space: nowrap; /* 텍스트와 입력창이 한 줄로 유지 */
         }
 
-        textarea.long-input {
-            width: 100%;
-            height: 30px;
-            padding: 6px;
-            border: 1px solid #b8daff;
-            border-radius: 4px;
-            box-sizing: border-box; /* padding과 border 포함 */
-        }
-
-        input.short-input, input.medium-input, input.long-input {
-            flex: 1; /* 입력창이 유연하게 공간 차지 */
-            width: 60%;
+        input.short-input {
+            flex: 0 1 auto; /* 입력창이 유연하게 공간 차지 */
+            width: 50%;
             height: 30px;
             padding: 6px;
             border: 1px solid #b8daff;
             border-radius: 4px;
             box-sizing: border-box;
         }
+
+        input.medium-input {
+            flex: 0 1 auto; /* 입력창이 유연하게 공간 차지 */
+            width: 75%;
+            height: 30px;
+            padding: 6px;
+            border: 1px solid #b8daff;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input.long-input {
+            flex: 0 1 auto; /* 입력창이 유연하게 공간 차지 */
+            width: 70%;
+            height: 30px;
+            padding: 6px;
+            border: 1px solid #b8daff;
+            border-radius: 4px;
+            box-sizing: border-box;
 
         span {
             flex: 0 0 auto; /* 단위의 크기를 고정 */
@@ -295,20 +304,22 @@
 
             <h3>(1) 업종 정보</h3>
             <table>
+                <thead>
                 <tr>
                     <th>항목</th>
                     <th>업소수</th>
                     <th>전월대비 증감률</th>
                     <th>배후지</th>
                     <th>전월대비 증감률</th>
-                </tr>
+                </tr></thead>
+                <tbody>
                 <tr>
                     <td>값</td>
                     <td class="numeric"><input type="number" placeholder="숫자" class="short-input"><span> 개</span></td>
                     <td class="numeric"><input type="number" placeholder="숫자" class="short-input"><span> %</span></td>
                     <td class="numeric"><input type="number" placeholder="숫자" class="short-input"><span> 개</span></td>
                     <td class="numeric"><input type="number" placeholder="숫자" class="short-input"><span> %</span></td>
-                </tr>
+                </tr></tbody>
             </table>
 
             <h3>(2) 매출 정보</h3>
