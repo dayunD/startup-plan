@@ -97,8 +97,10 @@
         }
 
         td.numeric {
-            text-align: right; /* 오른쪽 정렬 */
-            padding-right: 10px; /* 간격 추가 */
+            display: flex; /* Flexbox 사용 */
+            align-items: center; /* 수직 중앙 정렬 */
+            justify-content: flex-start; /* 입력창과 단위 왼쪽 정렬 */
+            gap: 5px; /* 입력창과 단위 간격 */
         }
 
         textarea.long-input {
@@ -111,7 +113,8 @@
         }
 
         input.short-input, input.medium-input, input.long-input {
-            width: 100%;
+            flex: 0 0 auto; /* 입력창 크기를 고정 */
+            width: 60%;
             height: 30px;
             padding: 6px;
             border: 1px solid #b8daff;
@@ -119,16 +122,8 @@
             box-sizing: border-box;
         }
 
-        input.short-input {
-            width: 100%;
-        }
-
-        input.medium-input {
-            width: 100%;
-        }
-
-        input.long-input {
-            width: 100%;
+        span {
+            white-space: nowrap; /* 단위가 줄바꿈되지 않도록 설정 */
         }
 
         button {
