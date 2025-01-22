@@ -17,19 +17,25 @@
             align-items: flex-start;
             min-height: auto;
             padding-bottom: 50px;
-            overflow-x: auto; /* 가로 스크롤 허용 */
+            overflow-x: hidden; /* 가로 스크롤 제거 */
         }
-
+    
         .form-container {
-            background-color: white; /* 흰색 배경 */
+            background-color: white;
             width: 95%;
             max-width: 900px;
             margin: 20px auto;
-            padding: 30px 40px;
+            padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            overflow: hidden; /* 초과 내용 숨김 */
-            position: relative; /* 위치 지정 */
+            overflow: hidden;
+        }
+    
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+            overflow-wrap: break-word; /* 긴 텍스트 줄바꿈 */
         }
 
 
@@ -69,13 +75,6 @@
             margin-top: 5px;
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 10px 0;
-            text-align: center;
-            margin-bottom: 30px; /* 아래 여백 */
-        }
 
         th {
             background-color: #007bff;
@@ -205,102 +204,50 @@
             .form-container {
                 padding: 15px;
             }
-
-            h1 {
-                font-size: 1.5rem;
+    
+            table {
+                font-size: 0.9rem;
             }
-
-            h2 {
-                font-size: 1.2rem;
-            }
-
+    
             th, td {
                 font-size: 0.9rem;
                 padding: 8px;
             }
-
-            input, textarea {
-                padding: 8px;
+    
+            input,
+            textarea {
                 font-size: 0.9rem;
+                padding: 8px;
             }
-
+    
             button {
                 font-size: 0.9rem;
                 padding: 8px 16px;
             }
         }
-
+    
         @media (max-width: 480px) {
             h1 {
-                font-size: 1.3rem;
-            }
-
-            h2 {
-                font-size: 1rem;
-            }
-
-            th, td {
-                font-size: 0.8rem;
-                padding: 6px;
-            }
-
-            input, textarea {
-                padding: 6px;
-                font-size: 0.8rem;
-            }
-
-            button {
-                font-size: 0.8rem;
-                padding: 6px 12px;
-            }
-        }
-
-        /* 반응형 디자인 */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 1.5rem;
-            }
-
-            h2 {
                 font-size: 1.2rem;
             }
-
-            th, td {
-                font-size: 12px;
-                padding: 8px;
-            }
-
-            input, textarea {
-                font-size: 12px;
-                padding: 8px;
-            }
-
-            button {
-                font-size: 12px;
-                padding: 8px 16px;
-            }
-        
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 1.3rem;
-            }
-
+    
             h2 {
                 font-size: 1rem;
             }
-
+    
             th, td {
-                font-size: 11px;
+                font-size: 0.8rem;
                 padding: 6px;
             }
-
-            input, textarea {
-                font-size: 11px;
+    
+            input,
+            textarea {
+                font-size: 0.8rem;
                 padding: 6px;
             }
-
+    
             button {
-                font-size: 11px;
+                font-size: 0.8rem;
                 padding: 6px 12px;
             }
         }
