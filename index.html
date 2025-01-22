@@ -98,14 +98,14 @@
 
         td.numeric {
             display: flex; /* Flexbox 사용 */
-            align-items: center; /* 수직 중앙 정렬 */
-            justify-content: center; /* 입력창과 단위 왼쪽 정렬 */
-            gap: 5px; /* 입력창과 단위 간격 */
+            align-items: center; /* 세로 중앙 정렬 */
+            justify-content: center; /* 입력 필드와 단위 가운데 정렬 */
+            gap: 5px; /* 입력 필드와 단위 간 간격 */
         }
 
         input.short-input {
-            flex: 0 1 auto; /* 입력창이 유연하게 공간 차지 */
-            width: 50%;
+            flex: 1; /* 입력 필드가 유연하게 공간 차지 */
+            max-width: 50%; /* 입력 필드의 최대 너비 설정 */
             height: 30px;
             padding: 6px;
             border: 1px solid #b8daff;
@@ -114,7 +114,7 @@
         }
 
         input.medium-input {
-            flex: 0 1 auto; /* 입력창이 유연하게 공간 차지 */
+            flex: 1; /* 입력 필드가 유연하게 공간 차지 */
             width: 75%;
             height: 30px;
             padding: 6px;
@@ -124,8 +124,8 @@
         }
 
         input.long-input {
-            flex: 0 1 auto; /* 입력창이 유연하게 공간 차지 */
-            width: 70%;
+            flex: 1; /* 입력 필드가 유연하게 공간 차지 */
+            width: 100%;
             height: 30px;
             padding: 6px;
             border: 1px solid #b8daff;
@@ -133,8 +133,8 @@
             box-sizing: border-box;
 
         span {
-            flex: 0 0 auto; /* 단위의 크기를 고정 */
-            white-space: nowrap; /* 단위 텍스트가 줄바꿈되지 않도록 설정 */
+            flex-shrink: 0; /* 단위가 크기 변경되지 않도록 고정 */
+            white-space: nowrap; /* 단위가 줄바꿈되지 않도록 설정 */
         }
 
         button {
