@@ -235,30 +235,30 @@
             }
         }
 
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 1.3rem;
+            @media (max-width: 480px) {
+                h1 {
+                    font-size: 1.4rem;
+                }
+            
+                h2 {
+                    font-size: 1.1rem;
+                }
+            
+                th, td {
+                    font-size: 0.85rem;
+                    padding: 8px;
+                }
+            
+                input, textarea {
+                    padding: 5px;
+                    font-size: 0.75rem;
+                }
+            
+                button {
+                    font-size: 0.85rem;
+                    padding: 8px 14px;
+                }
             }
-
-            h2 {
-                font-size: 1rem;
-            }
-
-            th, td {
-                font-size: 0.8rem;
-                padding: 6px;
-            }
-
-            input, textarea {
-                padding: 3px;
-                font-size: 0.7rem;
-            }
-
-            button {
-                font-size: 0.8rem;
-                padding: 6px 12px;
-            }
-        }
     </style>
 </head>
 <body>
@@ -386,7 +386,6 @@
             }
 
             function previewData() {
-            alert("이미지 다운로드"); // 미리보기 로직 추가 가능
         
                 const company = document.getElementById('company').value.trim();
                 const student = document.getElementById('student').value.trim();
@@ -394,33 +393,49 @@
                 const reason = document.getElementById('reason').value.trim();
 
                 
-                const marketInputs = document.query드</button>
+                const marketInputs = document.querySelector('table input'); // 필요하면 수정
+
                     </div>
                 `;
 
-                const previewWindow = window.open('', '_blank');
-                previewWindow.document.write(`
-                    <!DOCTYPE html>
-                    <html lang="en">
-                    <head>
-                        <meta charset="UTF-8">
-                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                        <title>창업계획서 미리보기</title>
-                        <style>${document.querySelector('style').innerHTML}</style>
-                    </head>
-                    <body>${previewContent}</body>
-                    </html>
-                `);
-                previewWindow.document.close();
+                function previewData() {
+                    const company = document.getElementById('company').value.trim();
+                    const student = document.getElementById('student').value.trim();
+                    const item = document.getElementById('item').value.trim();
+                    const reason = document.getElementById('reason').value.trim();
+                
+                    const previewContent = `
+                        <div class="form-container">
+                            <h2>1. 창업 아이템 및 업종</h2>
+                            <p><strong>기업명:</strong> ${company}</p>
+                            <p><strong>학번 및 이름:</strong> ${student}</p>
+                            <p><strong>창업 아이템 및 업종:</strong> ${item}</p>
+                            <p><strong>선택한 이유:</strong> ${reason}</p>
+                        </div>
+                    `;
+                
+                    const previewWindow = window.open('', '_blank');
+                    previewWindow.document.write(`
+                        <!DOCTYPE html>
+                        <html lang="en">
+                        <head>
+                            <meta charset="UTF-8">
+                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                            <title>창업계획서 미리보기</title>
+                            <style>${document.querySelector('style').innerHTML}</style>
+                        </head>
+                        <body>${previewContent}</body>
+                        </html>
+                    `);
+                    previewWindow.document.close();
+                }
 
                 previewWindow.saveAsImage = function () {
-                    const previewContainer = previewWindow.document.querySelector('.form-container');
+                    const previewContainer = previewWindow.document.body; // 미리보기 영역
                     html2canvas(previewContainer, {
-                        backgroundColor: '#ffffff', // 배경 흰색 지정
-                        useCORS: true, // 외부 리소스 문제 해결
-                        scale: 2, // 캡처 해상도 향상
-                        scrollX: 0, // 스크롤 문제 방지
-                        scrollY: 0
+                        backgroundColor: '#ffffff',
+                        useCORS: true,
+                        scale: 2
                     }).then(canvas => {
                         const link = document.createElement('a');
                         link.download = 'preview.png';
