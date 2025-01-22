@@ -17,16 +17,17 @@
             align-items: flex-start;
             min-height: auto;
             padding-bottom: 50px;
-            overflow-x: auto; /* 가로 스크롤 허용 */
         }
 
         .form-container {
             background-color: white; /* 흰색 배경 */
+            width: 95%;
             max-width: 900px;
             margin: 20px auto;
             padding: 30px 40px;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden; /* 초과 내용 숨김 */
             position: relative; /* 위치 지정 */
         }
 
@@ -81,7 +82,6 @@
             text-align: center;
             padding: 10px;
             font-size: 14px;
-            white-space: nowrap; /* 한 줄 유지 */
         }
 
         td {
@@ -91,7 +91,6 @@
             border: 1px solid #ccc;
             text-align: center; /* 테이블 셀 텍스트와 버튼을 가운데 정렬 */
             vertical-align: middle; /* 버튼을 셀 중앙에 맞춤 */
-            white-space: nowrap; /* 한 줄 유지 */
         }
 
         td.numeric {
@@ -167,10 +166,7 @@
             background-color: #e04e3f; /* 호버 시 어두운 빨강 */
         }
 
-        /* 미리보기 및 이미지 저장을 위한 CSS */
         #preview-container {
-            width: 1200px; /* 미리보기에서도 동일한 가로 크기 유지 */
-            margin: 0 auto;
             font-family: 'Nanum Gothic', sans-serif;
             padding: 20px;
             line-height: 1.6;
@@ -201,16 +197,41 @@
         #preview-container .delete-btn {
             display: none; /* 미리보기에서 삭제 버튼 숨김 */
         }
-                /* 반응형 디자인 */
+
+
+        /* 반응형 디자인 */
         @media (max-width: 768px) {
-            table {
-                display: block;
-                overflow-x: auto;
-                white-space: nowrap;
+            .form-container {
+                padding: 15px;
             }
 
             h1 {
                 font-size: 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.2rem;
+            }
+
+            th, td {
+                font-size: 0.9rem;
+                padding: 8px;
+            }
+
+            input, textarea {
+                padding: 8px;
+                font-size: 0.9rem;
+            }
+
+            button {
+                font-size: 0.9rem;
+                padding: 8px 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.3rem;
             }
 
             h2 {
@@ -223,44 +244,13 @@
             }
 
             input, textarea {
-                font-size: 0.9rem;
-            }
-
-            button {
-                font-size: 12px;
-                padding: 8px 15px;
-            }
-
-            .banner {
-                max-height: 150px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 1.2rem;
-            }
-
-            h2 {
-                font-size: 0.9rem;
-            }
-
-            th, td {
-                font-size: 0.75rem;
-                padding: 4px;
-            }
-
-            input, textarea {
+                padding: 6px;
                 font-size: 0.8rem;
             }
 
             button {
-                font-size: 10px;
-                padding: 6px 10px;
-            }
-
-            .banner {
-                max-height: 120px;
+                font-size: 0.8rem;
+                padding: 6px 12px;
             }
         }
     </style>
@@ -390,6 +380,8 @@
             }
 
             function previewData() {
+            alert("미리보기 기능 실행"); // 미리보기 로직 추가 가능
+        
                 const company = document.getElementById('company').value.trim();
                 const student = document.getElementById('student').value.trim();
                 const item = document.getElementById('item').value.trim();
