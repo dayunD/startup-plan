@@ -71,7 +71,7 @@
             margin: 10px 0;
             text-align: center;
             word-wrap: break-word; /* 긴 단어 줄바꿈 */
-            margin-bottom: 30px; /* 아래 여백 */
+            margin-bottom: 25px; /* 아래 여백 */
         }
 
         th {
@@ -134,7 +134,6 @@
             box-sizing: border-box; /* padding과 border 포함 */
         }
         button {
-            margin-top: 20px;
             padding: 10px 20px;
             background-color: #007bff;
             color: white;
@@ -288,10 +287,6 @@
                     <td>창업 아이템 및 업종</td>
                     <td><input type="text" class="long-input" id="item" placeholder="예: 교육 콘텐츠"></td>
                 </tr>
-                <tr>
-                    <td>선택한 이유</td>
-                    <td><textarea id="reason" rows="3" class="long-input" placeholder="해당 업종을 선택한 이유"></textarea></td>
-                </tr>
             </table>
         </div>
 
@@ -358,8 +353,32 @@
                 </tbody>
             </table>
             <button onclick="addRow()">항목 추가</button>
+        </div>
+
+        <br><br>
+        <!-- 4. 선택한 이유 -->
+        <div class="form-section">
+            <h2>4. 선정 및 예산 수립 이유 </h2>
+            <table>
+                <tr>
+                    <th>항목</th>
+                    <th>내용</th>
+                </tr>
+                <tr>
+                    <td>해당 업종을 선택한 이유는?</td>
+                    <td><textarea id="reasonIndustry" rows="3" class="long-input" placeholder="자유롭게 작성"></textarea></td>
+                </tr>
+                <tr>
+                    <td>판매 계획을 책정한 기준과 그 이유는?</td>
+                    <td><textarea id="financeReason" rows="3" class="long-input" placeholder="자유롭게 작성"></textarea></td>
+                </tr>                
+            </table>
+        </div>
+
+        <div>
             <button onclick="previewData()">확인</button>
         </div>
+
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
@@ -390,9 +409,9 @@
                 const company = document.getElementById('company').value.trim();
                 const student = document.getElementById('student').value.trim();
                 const item = document.getElementById('item').value.trim();
-                const reason = document.getElementById('reason').value.trim();
+                const reasonIndustry = document.getElementById('reasonIndustry').value.trim(); // 업종 선택 이유
+                const reasonFinance = document.getElementById('financeReason').value.trim(); // 판매 계획 기준
 
-                
                 const marketInputs = document.querySelectorAll('.form-section:nth-of-type(2) input');
                 const marketRows = `
                     <tr>
@@ -451,10 +470,6 @@
                                     <td>창업 아이템 및 업종</td>
                                     <td>${item || '-'}</td>
                                 </tr>
-                                <tr>
-                                    <td>선택 이유</td>
-                                    <td>${reason || '-'}</td>
-                                </tr>
                             </table>
                         </div>
 
@@ -496,6 +511,24 @@
                                 <tbody>
                                     ${financeContent || `<tr><td colspan="2" style="text-align: center;">입력된 항목이 없습니다.</td></tr>`}
                                 </tbody>
+                            </table>
+                        </div>
+
+                        <div class="form-section">
+                            <h2>4. 선정 및 예산 수립 이유</h2>
+                            <table>
+                                <tr>
+                                    <th>항목</th>
+                                    <th>내용</th>
+                                </tr>
+                                <tr>
+                                    <td>해당 업종을 선택한 이유는?</td>
+                                    <td>${reasonIndustry || '-'}</td>
+                                </tr>
+                                <tr>
+                                    <td>판매 계획을 책정한 기준과 그 이유는?</td>
+                                    <td>${reasonFinance || '-'}</td>
+                                </tr>
                             </table>
                         </div>
 
