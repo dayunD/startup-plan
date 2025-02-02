@@ -551,6 +551,20 @@
                 `);
                 previewWindow.document.close();
 
+            document.querySelectorAll('input').forEach(input => {
+                input.setAttribute('lang', 'ko'); // 기본 한국어 설정
+            
+                input.addEventListener('focus', () => {
+                    input.setAttribute('lang', 'ko'); // 포커스 시 한국어 설정 유지
+                });
+            
+                input.addEventListener('keydown', (event) => {
+                    if (event.key.length === 1) { // 사용자가 키 입력할 때
+                        input.setAttribute('lang', 'ko'); // 한글 입력 유지
+                    }
+                });
+            });
+
                 previewWindow.saveAsImage = function () {
                     const previewContainer = previewWindow.document.querySelector('.form-container');
                     html2canvas(previewContainer, {
