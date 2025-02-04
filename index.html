@@ -99,11 +99,12 @@
 
         textarea.long-input {
             width: 100%; /* 셀 너비에 맞게 조정 */
-            height: 30px;
+            height: 150px;
             padding: 6px;
             border: 1px solid #b8daff;
             border-radius: 4px;
             box-sizing: border-box; /* padding과 border 포함 */
+            resize: vertical; /* 사용자가 세로 크기만 조절 가능 */
         }
 
 
@@ -133,6 +134,8 @@
             border-radius: 4px;
             box-sizing: border-box; /* padding과 border 포함 */
         }
+
+
         button {
             padding: 10px 20px;
             background-color: #007bff;
@@ -352,31 +355,29 @@
                     </tr>    
                 </tbody>
             </table>
-            <button onclick="addRow()">항목 추가</button>
+            <div style="text-align: center; margin-top: 20px;">
+            <button onclick="addRow()">항목 추가</button></div>
         </div>
 
         <br><br>
-        <!-- 4. 선택한 이유 -->
+        <!-- 4. 선정 및 판매 기준 이유 -->
         <div class="form-section">
-            <h2>4. 선정 및 판매 기준 이유 </h2>
+            <h2>4. 선정 및 판매 기준 이유</h2>
             <table>
                 <tr>
-                    <th>항목</th>
-                    <th>내용</th>
+                    <th style="width: 50%;">해당 업종을 선택한 이유는?</th>
+                    <th style="width: 50%;">판매 계획을 책정한 기준과 그 이유는?</th>
                 </tr>
                 <tr>
-                    <td>해당 업종을 선택한 이유는?</td>
-                    <td><textarea id="reasonIndustry" rows="3" class="long-input" placeholder="자유롭게 작성"></textarea></td>
+                    <td><textarea id="reasonIndustry" rows="5" class="long-input" placeholder="자유롭게 작성하세요"></textarea></td>
+                    <td><textarea id="financeReason" rows="5" class="long-input" placeholder="자유롭게 작성하세요"></textarea></td>
                 </tr>
-                <tr>
-                    <td>판매 계획을 책정한 기준과 그 이유는?</td>
-                    <td><textarea id="financeReason" rows="3" class="long-input" placeholder="자유롭게 작성"></textarea></td>
-                </tr>                
             </table>
         </div>
 
-        <div>
-            <button onclick="previewData()">확인</button>
+
+        <div style="text-align: center; margin-top: 20px;">
+            <button onclick="previewData()">미리보기</button>
         </div>
 
 
@@ -409,24 +410,25 @@
                 const company = document.getElementById('company').value.trim();
                 const student = document.getElementById('student').value.trim();
                 const item = document.getElementById('item').value.trim();
-                const reasonIndustry = document.getElementById('reasonIndustry').value.trim(); // 업종 선택 이유
-                const reasonFinance = document.getElementById('financeReason').value.trim(); // 판매 계획 기준
+                const reasonIndustry = document.getElementById('reasonIndustry').value.trim();
+                const reasonFinance = document.getElementById('financeReason').value.trim();
 
+                // ✅ '상권 분석' 데이터 수집
                 const marketInputs = document.querySelectorAll('.form-section:nth-of-type(2) input');
                 const marketRows = `
                     <tr>
                         <td>값</td>
                         <td class="numeric">${marketInputs[0].value.trim() || '0'} 개</td>
-                        <td class="numeric">${marketInputs[1].value.trim() || '0'}%</td>
+                        <td class="numeric">${marketInputs[1].value.trim() || '0'} %</td>
                         <td class="numeric">${marketInputs[2].value.trim() || '0'} 개</td>
-                        <td class="numeric">${marketInputs[3].value.trim() || '0'}%</td>
+                        <td class="numeric">${marketInputs[3].value.trim() || '0'} %</td>
                     </tr>
                     <tr>
                         <td>값</td>
                         <td class="numeric">${marketInputs[4].value.trim() || '0'} 원</td>
-                        <td class="numeric">${marketInputs[5].value.trim() || '0'}%</td>
+                        <td class="numeric">${marketInputs[5].value.trim() || '0'} %</td>
                         <td class="numeric">${marketInputs[6].value.trim() || '0'} 건</td>
-                        <td class="numeric">${marketInputs[7].value.trim() || '0'}%</td>
+                        <td class="numeric">${marketInputs[7].value.trim() || '0'} %</td>
                     </tr>
                 `;
 
@@ -447,6 +449,7 @@
                     `;
                 });
 
+                // ✅ '미리보기' HTML 생성
                 const previewContent = `
                     <div class="form-container">
                         <h1>창업계획서</h1> 
@@ -518,16 +521,12 @@
                             <h2>4. 선정 및 판매 기준 이유</h2>
                             <table>
                                 <tr>
-                                    <th>항목</th>
-                                    <th>내용</th>
+                                    <th style="width: 50%;">해당 업종을 선택한 이유는?</th>
+                                    <th style="width: 50%;">판매 계획을 책정한 기준과 그 이유는?</th>
                                 </tr>
                                 <tr>
-                                    <td>해당 업종을 선택한 이유는?</td>
-                                    <td>${reasonIndustry || '-'}</td>
-                                </tr>
-                                <tr>
-                                    <td>판매 계획을 책정한 기준과 그 이유는?</td>
-                                    <td>${reasonFinance || '-'}</td>
+                                    <td style="padding: 10px; height: 100px;">${reasonIndustry || '-'}</td>
+                                    <td style="padding: 10px; height: 100px;">${reasonFinance || '-'}</td>
                                 </tr>
                             </table>
                         </div>
@@ -539,7 +538,7 @@
                 const previewWindow = window.open('', '_blank');
                 previewWindow.document.write(`
                     <!DOCTYPE html>
-                    <html lang="en">
+                    <html lang="ko">
                     <head>
                         <meta charset="UTF-8">
                         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -551,28 +550,12 @@
                 `);
                 previewWindow.document.close();
 
-            document.querySelectorAll('input').forEach(input => {
-                input.setAttribute('lang', 'ko'); // 기본 한국어 설정
-            
-                input.addEventListener('focus', () => {
-                    input.setAttribute('lang', 'ko'); // 포커스 시 한국어 설정 유지
-                });
-            
-                input.addEventListener('keydown', (event) => {
-                    if (event.key.length === 1) { // 사용자가 키 입력할 때
-                        input.setAttribute('lang', 'ko'); // 한글 입력 유지
-                    }
-                });
-            });
-
                 previewWindow.saveAsImage = function () {
                     const previewContainer = previewWindow.document.querySelector('.form-container');
                     html2canvas(previewContainer, {
-                        backgroundColor: '#ffffff', // 배경 흰색 지정
-                        useCORS: true, // 외부 리소스 문제 해결
-                        scale: 2, // 캡처 해상도 향상
-                        scrollX: 0, // 스크롤 문제 방지
-                        scrollY: 0
+                        backgroundColor: '#ffffff',
+                        useCORS: true,
+                        scale: 2,
                     }).then(canvas => {
                         const link = document.createElement('a');
                         link.download = '창업계획서.png';
@@ -580,8 +563,9 @@
                         link.click();
                     });
                 };
-
             }
+
+
         </script>
 
     </div>
